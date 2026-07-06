@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Context-Aware Smart Exam</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="afk-overlay" class="overlay">
+        <div class="overlay-box">
+            <h2>⚠️ PERINGATAN AFK ⚠️</h2>
+            <p>Anda terdeteksi meninggalkan perangkat!</p>
+            <p>Waktu ujian dijeda sementara.</p>
+            <p><em>(Gerakkan mouse, ketik, atau sentuh layar untuk melanjutkan)</em></p>
+        </div>
+    </div>
+
+    <div id="fullscreen-overlay" class="overlay">
+        <div class="overlay-box" style="background-color: #ffc107; color: #000;">
+            <h2>⚠️ PELANGGARAN LAYAR ⚠️</h2>
+            <p>Anda keluar dari mode layar penuh atau pindah tab!</p>
+            <p>Ujian dijeda. Silakan kembali untuk melanjutkan.</p>
+            <button onclick="kembaliFullscreen()" style="margin-top: 15px; background-color: #000;">Kembali ke Ujian</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div id="start-page" class="page active">
+            <h2>Simulasi E-Ujian Pervasif</h2>
+            <input type="text" id="nama" placeholder="Masukkan Nama (Hanya Huruf)" required>
+            <input type="text" id="nim" placeholder="Masukkan NIM (Hanya Angka)" required>
+            <button onclick="mulaiUjian()">Mulai Ujian</button>
+        </div>
+
+        <div id="exam-page" class="page">
+            <div class="header-ujian">
+                <h3>Soal Ujian</h3>
+                <div id="status-box">Status: <span id="status-text" class="status-aktif">Aktif</span></div>
+                <div id="timer">Waktu: <span id="waktu">60</span> detik</div>
+            </div>
+            
+            <div id="soal-container">
+                </div>
+            <button onclick="selesaiUjian()">Kumpulkan Jawaban</button>
+        </div>
+
+        <div id="result-page" class="page">
+            <h2>Hasil Ujian</h2>
+            <p>Nama: <span id="hasil-nama"></span></p>
+            <p>NIM: <span id="hasil-nim"></span></p>
+            <h3>Skor Anda: <span id="skor"></span> / 100</h3>
+            
+            <div class="log-perilaku">
+                <h3>Log Perilaku (Smart Detector)</h3>
+                <ul id="log-list">
+                    </ul>
+            </div>
+            <button onclick="location.reload()">Ulangi Simulasi</button>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

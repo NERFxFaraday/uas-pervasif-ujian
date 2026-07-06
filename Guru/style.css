@@ -1,0 +1,111 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    padding: 50px;
+    margin: 0;
+}
+
+.container {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 600px;
+    position: relative;
+    z-index: 1;
+}
+
+.page { display: none; }
+.page.active { display: block; }
+
+input[type="text"] {
+    display: block;
+    width: 100%;
+    box-sizing: border-box; 
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input[type="radio"] {
+    margin: 0 10px 0 0;
+    padding: 0;
+    cursor: pointer;
+}
+
+label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover { background-color: #0056b3; }
+
+.header-ujian {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+#status-box { font-weight: bold; }
+.status-aktif { color: green; }
+.status-warning { color: orange; } 
+.status-afk { color: red; }
+.soal-item { margin-bottom: 20px; }
+
+.log-perilaku {
+    background: #fff3cd;
+    padding: 15px;
+    border-left: 5px solid #ffc107;
+    margin-top: 20px;
+}
+
+/* DESAIN OVERLAY (POP-UP LAYAR PENUH) */
+.overlay {
+    display: none; 
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.85); 
+    z-index: 9999; 
+    justify-content: center; align-items: center;
+}
+
+.overlay.show { display: flex; }
+
+.overlay-box {
+    background-color: #dc3545; 
+    color: white;
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    animation: popIn 0.3s ease-out;
+}
+
+.overlay-box h2 {
+    margin-top: 0;
+    font-size: 28px;
+}
+
+@keyframes popIn {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}

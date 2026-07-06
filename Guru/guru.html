@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Guru - Smart Exam</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .container-guru { max-width: 900px; margin: auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 12px; border: 1px solid #ddd; text-align: center; }
+        th { background-color: #007bff; color: white; }
+        .btn-excel { background-color: #28a745; margin-bottom: 15px;}
+        .btn-excel:hover { background-color: #218838; }
+        .btn-reset { background-color: #dc3545; }
+        .btn-reset:hover { background-color: #c82333; }
+        .header-guru { display: flex; justify-content: space-between; align-items: center; }
+    </style>
+</head>
+<body style="background-color: #f4f4f9; padding: 30px;">
+    
+    <div class="container-guru">
+        <div class="header-guru">
+            <h2>👨‍🏫 Dashboard Hasil Ujian (Guru)</h2>
+            <div>
+                <button class="btn-excel" onclick="downloadExcel()">📥 Download Hasil Ujian</button>
+                <button class="btn-reset" onclick="resetData()">🗑️ Hapus Data</button>
+            </div>
+        </div>
+
+        <div style="background-color: #e9ecef; padding: 15px; border-radius: 8px; margin-bottom: 20px; border-left: 5px solid #007bff;">
+            <h3>📋 Pengaturan Database Peserta (DPT)</h3>
+            <p style="font-size: 14px; color: #555;">Unggah file Excel (format <b>.csv</b>) berisi daftar siswa yang diizinkan mengikuti ujian.</p>
+            <input type="file" id="upload-csv" accept=".csv" style="margin-bottom: 10px;">
+            <br>
+            <span id="status-db" style="font-weight: bold; color: green;"></span>
+        </div>
+
+        <p>Rekapitulasi nilai dan pengawasan (Pervasif) dari siswa:</p>
+
+        <table id="tabel-hasil">
+            <thead>
+                <tr>
+                    <th>Nama</th>
+                    <th>NIM</th>
+                    <th>Skor Akhir</th>
+                    <th>Detail Jawaban</th>
+                    <th>Jml. Pelanggaran</th>
+                    <th>Waktu AFK</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="data-siswa">
+                </tbody>
+        </table>
+    </div>
+
+    <script src="guru.js"></script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+---
+
+### 2. File `Manual_Book.txt` (Versi Notepad)
+Salin teks di bawah ini dan timpa isi file `Manual_Book.txt` di folder proyekmu. Formatnya sudah disesuaikan agar rapi saat dibuka di Notepad.
+
+```text
+=======================================================================
+               MANUAL BOOK: CONTEXT-AWARE SMART EXAM SYSTEM
+  Sistem Simulasi Ujian Pintar Berbasis Komputasi Pervasif (CBT Ketat)
+=======================================================================
+
+-----------------------------------------------------------------------
+1. PENDAHULUAN
+-----------------------------------------------------------------------
+Context-Aware Smart Exam adalah platform simulasi ujian online cerdas 
+yang dirancang menggunakan prinsip Komputasi Pervasif. Sistem ini 
+bertindak sebagai "sensor pasif" yang memantau fokus, keberadaan fisik, 
+dan integritas akademis peserta ujian tanpa perangkat keras tambahan.
+
+Ringkasan Fitur Utama:
+- Database Whitelist: Sistem blokir akses bagi siswa tidak terdaftar.
+- Strict Input Validation: Validasi identitas otomatis menggunakan RegEx.
+- Smart Presence Tracker (AFK): Deteksi kehadiran fisik multi-sensor.
+- Strict Automated Proctoring: Sensor pindah tab, hilang fokus, dll.
+- Auto-Disqualification: Penghentian ujian paksa jika melanggar 3 kali.
+- Auto-Save Recovery: Perlindungan data dari risiko browser tertutup.
+- Teacher Dashboard: Panel guru dengan fitur upload DPT & ekspor nilai.
+
+
+-----------------------------------------------------------------------
+2. ARSITEKTUR & STRUKTUR DIREKTORI
+-----------------------------------------------------------------------
+Sistem ini bersifat client-side murni. Untuk menjaga keamanan rute 
+administrasi, arsitektur proyek dipisahkan menjadi dua lingkungan utama:
+
+Proyek_Ujian_Pervasif/
+ |
+ +-- Siswa/
+ |    +-- index.html (Antarmuka ujian)
+ |    +-- script.js  (Pusat logika pervasif siswa)
+ |    +-- style.css  (Desain antarmuka)
+ |
+ +-- Guru/
+      +-- guru.html  (Antarmuka dashboard analitik)
+      +-- guru.js    (Logika tabel, verifikasi CSV, dan ekspor)
+      +-- style.css  (Desain antarmuka)
+
+
+-----------------------------------------------------------------------
+3. PANDUAN OPERASIONAL: SISI GURU (TEACHER DASHBOARD)
+-----------------------------------------------------------------------
+PENTING: Anda WAJIB menjalankan proyek ini menggunakan ekstensi 
+Live Server pada VS Code agar Local Storage berfungsi antar-folder.
+
+A. Tahap Persiapan (Mengunggah Database Peserta / DPT)
+1. Buka folder "Guru", jalankan file "guru.html" dengan Live Server.
+2. Di bagian Pengaturan Database, klik "Choose File".
+3. Pilih file CSV yang berisi daftar Nama dan NIM siswa yang sah.
+4. Pastikan muncul indikator hijau: "Database Aktif". Jika database
+   tidak diunggah, tidak akan ada siswa yang bisa memulai ujian.
+
+B. Membaca Tabel Rekapitulasi & Ekspor Data
+Tabel otomatis menampilkan data analitik setelah siswa selesai ujian.
+- Skor Akhir       : Nilai murni kalkulasi jawaban benar (0 - 100).
+- Detail Jawaban   : Menampilkan urutan hasil per nomor (Benar/Salah).
+- Jml. Pelanggaran : Akumulasi percobaan curang (keluar layar/tab).
+- Waktu AFK        : Total waktu (detik) siswa meninggalkan perangkat.
+- Status           : Selesai (Normal) atau Diskualifikasi (Curang).
+Untuk mengunduh laporan ini, klik "Download Hasil Ujian".
+
+
+-----------------------------------------------------------------------
+4. PANDUAN OPERASIONAL: SISI SISWA (EXAM INTERFACE)
+-----------------------------------------------------------------------
+A. Prosedur Memulai Ujian (Verifikasi Lapis Ganda)
+1. Buka folder "Siswa", jalankan file "index.html" dengan Live Server.
+2. Isi kolom Nama dan NIM dengan aturan mutlak:
+   - Nama: Format huruf/alfabet.
+   - NIM: Format angka murni.
+3. Klik tombol "Mulai Ujian". Sistem akan mencocokkan input dengan
+   database Excel yang telah diunggah guru. (Catatan: Sistem kebal
+   terhadap kesalahan ketik huruf besar/kecil).
+4. Jika cocok, sistem memaksa mode Layar Penuh dan mengacak soal.
+
+B. Mekanisme Sensor Keamanan (Diskualifikasi)
+Setiap tindakan curang akan mengurangi sisa nyawa (Maksimal 3 kali).
+- Sensor Pindah Tab: Terpicu jika meminimalkan browser/buka tab baru.
+- Sensor Batas Layar: Terpicu jika keluar dari mode fullscreen.
+- Sensor Hilang Fokus: Terpicu jika mengklik aplikasi di luar browser.
+Jika melanggar 3 kali, ujian dihentikan secara paksa detik itu juga.
+
+C. Sensor Kehadiran Fisik (Smart AFK Tracker)
+- Detik ke-10: Muncul peringatan oranye ("Apakah Anda di sana?").
+- Detik ke-15: Sistem menganggap siswa pergi (AFK). Layar diblokir
+  warna merah dan WAKTU UJIAN DIJEDA sementara.
+- Cara Membuka: Gerakkan kursor atau ketik keyboard untuk melanjutkan.
+=======================================================================
